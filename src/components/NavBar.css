@@ -1,0 +1,31 @@
+/* NavBar.css */
+
+.navBar {
+  display: flex;
+  justify-content: center;
+}
+
+/* vvv START Mobile width vvv */
+
+/* ^^^ END Mobile width ^^^ */
+
+/* vvv START Tablet width vvv */
+@media (min-width: 576px) {
+
+}
+/* ^^^ END Tablet width ^^^ */
+
+/* vvv START Desktop width vvv */
+@media (min-width: 768px) {
+  .navBar {
+    width: 100%;
+    border: 3px solid limegreen;
+  }
+
+  .navBar > * {
+    width: 100%;
+    border: 3px solid red;
+  }
+
+}
+/* ^^^ END Desktop width ^^^ */
