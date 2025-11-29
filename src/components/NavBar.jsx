@@ -4,25 +4,20 @@ import React from "react";
 
 import './NavBar.css';
 
-function getOpenPage() {
-  const loc = useLocation();
-  console.log(loc);
-}
-
 class NavBar extends React.Component {
-  
+ 
+  // onClick gets the menu button when clicked by user
   onClick = (event) => {
     this.props.clickedLink(
       event.target.value
     );
     event.preventDefault();
   };
-
+  
   render() {
+    console.log(this.props.className);
     return (
-      <nav className="navBar">
-        <div onClick={this.onClick}>{this.props.children}</div>
-      </nav>
+      <nav className={this.props.className} onClick={this.onClick}>{this.props.children}</nav>
     );
   }
 }

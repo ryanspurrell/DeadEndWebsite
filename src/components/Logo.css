@@ -1,15 +1,14 @@
+/* Logo.css */
+
 .logoButton {
   display: flex;
   justify-content: center;
   align-items: center;
   background: none;
-  border: 3px solid pink;
   aspect-ratio: 1;
-  width: 100%;
 }
 
 .logoImage {
-  filter: drop-shadow(0 0 1px pink);
+  filter: drop-shadow(0 0 100px white);
   width: 100%;
-
 }

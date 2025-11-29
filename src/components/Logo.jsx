@@ -1,7 +1,6 @@
 // Logo.jsx
 
 import React from "react";
-import { useLocation } from "react-router-dom";
 
 import './Logo.css';
 import raven from '/images/logo_head.svg';
