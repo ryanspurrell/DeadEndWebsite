@@ -22,11 +22,15 @@ To run this website locally:
     In ubuntu:
         sudo apt install nodejs
 
-3. From the repository directory (/DeadEnd) run:
+Everything from this point has to be done in your computer's terminal from the DeadEnd directory
+
+4. Install dependencies:
+    npm install
+
+5. Host server locally:
     npm run dev
-    NOTE: You have to use the terminal for this part
     The terminal will output a local ip address, either click on it to open the website in a browser or copy paste into browser
 
-4. It should now be running!
+6. It should now be running!
 
     
