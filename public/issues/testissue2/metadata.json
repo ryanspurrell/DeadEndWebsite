@@ -1,0 +1,13 @@
+{
+  "title": "testissue2",
+  "pages": [
+    "pages/dove3.png",
+    "pages/skeleton.avif",
+    "pages/skeletonman.webp"
+  ],
+  "thumbnails": [
+    "thumbnails/dove3.jpg",
+    "thumbnails/skeleton.avif",
+    "thumbnails/skeletonman.jpg"
+  ]
+}
