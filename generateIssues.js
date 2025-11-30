@@ -5,19 +5,22 @@ import sharp from "sharp";
 const issuesDir = path.resolve("public/issues");
 const indexFile = path.resolve("public/issues/index.json");
 
-// Natural sorting: p1, p2, p10 correctly
+const songsDir = path.resolve("public/songs");
+const songsIndex = path.resolve("public/issues/index.json");
+
+// Sorting
 function naturalSort(a, b) {
   return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
 }
 
-// Generate a thumbnail for a given page
+// Generate a thumbnail for a page
 async function generateThumbnail(srcPath, destPath) {
   try {
-    // Ensure thumbnail folder exists
+    // Check if thumbnail folder exists
     const folder = path.dirname(destPath);
     await fs.mkdir(folder, { recursive: true });
 
-    // Convert to 400px wide JPEG thumbnail
+    // Convert to 400px JPEG
     await sharp(srcPath)
       .resize({ width: 400 })
       .jpeg({ quality: 80 })
@@ -66,7 +69,7 @@ async function processIssue(issueFolder) {
     thumbFiles.push(`thumbnails/${thumbName}`);
   }
 
-  // Load existing metadata if present
+  // Load existing metadata if it's there
   let metadata = {};
   try {
     metadata = JSON.parse(await fs.readFile(metadataPath, "utf-8"));
@@ -74,7 +77,7 @@ async function processIssue(issueFolder) {
     metadata = {};
   }
 
-  // Build metadata
+  // Make metadata
   const finalMetadata = {
     title: metadata.title || issueFolder.replace(/-/g, " "),
     pages: pages.map((file) => `pages/${file}`),

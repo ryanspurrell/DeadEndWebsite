@@ -29,7 +29,8 @@ class App extends React.Component {
 
   // Default link is to home
   state = {
-    pageLink: "/"
+    pageLink: "/",
+    currentPage: this.getPage()
   };
 
   // Get the clicked link from the NavBar
@@ -40,36 +41,51 @@ class App extends React.Component {
     } else {
       this.setState({ pageLink: "/" });
     };
+    this.setState({ currentPage: this.getPage() });
   };
 
-  render() {
+  getPage() {
+    const currentURL = window.location.href;
+    const pageList = currentURL.split("/");
+    const page = pageList[pageList.length - 1];
 
-    const { pageLink } = this.state;
-    const activePage = pageLink;
+    if ( page === "" ) {
+      return "home";
+    } else {
+      return page;
+    }
+  }
+
+  render() {
     
+    const { pageLink } = this.state;
+    const { currentPage } = this.state;
+ 
     return (
       <div className="pageContainer">
-        <Router>
+        <div className={currentPage}>
+          <Router>
           
-          <div className="navContainer">
-            <NavBar className="navBar" clickedLink={this.handleNavBarClick} activePage={activePage}>
-              <LogoButton navLinkClass="logoNavLink" childClass="logoButton"/>
-              <IssuesButton navLinkClass="issuesNavLink" childClass="issuesButton" />
-              <AboutUsButton navLinkClass="aboutusNavLink" childClass="aboutusButton" />
-              <ContactButton navLinkClass="contactNavLink" childClass="contactButton" />
-            </NavBar>
-          </div>
+            <div className="navContainer">
+              <NavBar className="navBar" clickedLink={this.handleNavBarClick} activePage={currentPage}>
+                <LogoButton navLinkClass="logoNavLink" childClass="logoButton"/>
+                <IssuesButton navLinkClass="issuesNavLink" childClass="issuesButton" />
+                <AboutUsButton navLinkClass="aboutusNavLink" childClass="aboutusButton" />
+                <ContactButton navLinkClass="contactNavLink" childClass="contactButton" />
+              </NavBar>
+            </div>
           
-          <div className="mainContainer">
-            <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/issues" element={<Issues />}/>
-              <Route path="/aboutus" element={<AboutUs />}/>
-              <Route path="/contact" element={<Contact />}/>
-            </Routes>
-          </div>
+            <div className="mainContainer">
+              <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/issues" element={<Issues />}/>
+                <Route path="/aboutus" element={<AboutUs />}/>
+                <Route path="/contact" element={<Contact />}/>
+              </Routes>
+            </div>
 
-        </Router>
+          </Router>
+        </div>
         <Footer audioDir="/songs/loop/" />
       </div>
     );

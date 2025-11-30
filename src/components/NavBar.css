@@ -4,27 +4,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  border: 3px solid blue;
   cursor: default;
-}
-
-.navBar > *:hover {
-  cursor: pointer;
 }
 
 .logoButton {
 }
 
 .logoNavLink {
-  border: 3px solid black;
 }
 
 .issuesButton {
 }
 
 .issuesNavLink {
-  border: 3px solid white;
 }
 
 .aboutusButton {
@@ -44,29 +36,43 @@
 
 /* ^^^ END Mobile width ^^^ */
 
-/* vvv START Tablet width vvv */
-@media (min-width: 768px) {
+/* vvv START Tablet width vvv 
+ *  min width: 576px
+ * */
+@media (min-width: 576px) {
 
 }
 /* ^^^ END Tablet width ^^^ */
 
-/* vvv START Desktop width vvv */
-@media (min-width: 576px) and (orientation: landscape) {
+/* vvv START Desktop width vvv 
+ *  min width: 768px
+ * */
+@media (min-width: 768px) {
   .navBar {
     width: 100%;
     height: 100%;
+  }
+
+  .navBar .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
   }
 
-  .navBar > * {
-    width: 70%;
+  .navBar .issues, .navBar .aboutus, .navBar .contact {
+    border: 3px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .logoButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100%; 
   }
 
   .logoNavLink {
