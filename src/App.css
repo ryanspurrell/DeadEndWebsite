@@ -21,7 +21,6 @@
 
 .mainContainer {
   grid-area: main;
-  border: 3px solid limegreen;
 }
 
 /* vvv START Mobile width vvv */
@@ -52,20 +51,32 @@
     grid-template-columns: 1fr 4fr;
     grid-template-rows: 4fr 1fr;
 
-    padding: 100px;
     gap: 10px;
-    height: calc(100vh - 200px);
+    height: 100vh;
   }
 
   .navContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 100px;
   }
 
   .audioContainer {
     display: flex;
     justify-content: center;
+    padding-right: 100px;
+    padding-bottom: 100px;
+  }
+
+  .audioContainer audio {
+    width: 70%;
+  }
+
+  .mainContainer {
+    padding-right: 100px;
   }
 
 }

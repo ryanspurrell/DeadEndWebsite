@@ -1,8 +1,7 @@
 {
-"song":{
 	"title": "loop",
 	"artist": "BigFingus",
 	"album": "None",
-	"filetype": ".flac"
-}
+	"filetype": ".flac",
+	"image": "bigfingus.png"
 }

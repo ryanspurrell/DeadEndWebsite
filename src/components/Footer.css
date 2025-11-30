@@ -1,11 +1,3 @@
-/* Home.css */
-
-.homeContainer {
-  width: 100%;
-  height: 100%;
-  border: 3px solid pink;
-}
-
 /* vvv START Mobile width vvv */
 
 /* ^^^ END Mobile width ^^^ */
@@ -18,5 +10,6 @@
 
 /* vvv START Desktop width vvv */
 @media (min-width: 768px) {
+
 }
 /* ^^^ END Desktop width ^^^ */

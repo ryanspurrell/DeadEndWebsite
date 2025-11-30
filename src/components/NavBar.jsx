@@ -15,7 +15,6 @@ class NavBar extends React.Component {
   };
   
   render() {
-    console.log(this.props.className);
     return (
       <nav className={this.props.className} onClick={this.onClick}>{this.props.children}</nav>
     );

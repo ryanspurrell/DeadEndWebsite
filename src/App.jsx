@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
 
 import NavBar from './components/NavBar';
 import Logo from './components/Logo';
+import Footer from './components/Footer';
 
 // Define the buttons in the navigation bar
 // doing them here and not NavBar.jsx because of routing
@@ -45,9 +46,7 @@ class App extends React.Component {
 
     const { pageLink } = this.state;
     const activePage = pageLink;
-
-    console.log(pageLink)
-
+    
     return (
       <div className="pageContainer">
         <Router>
@@ -71,13 +70,7 @@ class App extends React.Component {
           </div>
 
         </Router>
-        
-        <div className="audioContainer">
-          <audio controls>
-            <source src="./songs/loop/loop.flac" type="audio/flac" />
-          </audio>
-        </div>
-
+        <Footer audioDir="/songs/loop/" />
       </div>
     );
 
