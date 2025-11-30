@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function Footer(props) {
   const audioDir = props.audioDir;
-  const meta = "../../public" + props.audioDir + "metadata.json";
+  const meta = props.audioDir + "metadata.json";
 
   let [audioJSON, setAudioJSON] = useState(null);
 
