@@ -2,7 +2,7 @@
 
 import './App.css';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 import Home from './pages/Home';
@@ -23,74 +23,62 @@ const IssuesButton = ({navLinkClass, childClass}) =>
 const AboutUsButton = ({navLinkClass, childClass}) => 
   <Link to="/aboutus" className={navLinkClass}><button className={childClass} value="/aboutus">About Us</button></Link>;
 const ContactButton = ({navLinkClass, childClass}) => 
-  <Link to="/contact" className={navLinkClass}><button className={childClass} value="/contact">Contact</button></Link>
+  <Link to="/contact" className={navLinkClass}><button className={childClass} value="/contact">Contact</button></Link>;
 
-class App extends React.Component {
+function App() {
 
-  // Default link is to home
-  state = {
-    pageLink: "/",
-    currentPage: this.getPage()
-  };
+  const [pageLink, setPageLink] = useState(null);
+  const [currentPage, setCurrentPage] = useState(null);
 
-  // Get the clicked link from the NavBar
-  //  i.e pass NavBar data to parent App
-  handleNavBarClick = (clickedLink) => {
-    if (clickedLink) {
-      this.setState({ pageLink: clickedLink });
-    } else {
-      this.setState({ pageLink: "/" });
-    };
-    this.setState({ currentPage: this.getPage() });
-  };
-
-  getPage() {
+  const handleState = function() {
     const currentURL = window.location.href;
     const pageList = currentURL.split("/");
     const page = pageList[pageList.length - 1];
 
-    if ( page === "" ) {
-      return "home";
-    } else {
-      return page;
-    }
-  }
-
-  render() {
+    setPageLink(currentURL);
     
-    const { pageLink } = this.state;
-    const { currentPage } = this.state;
- 
-    return (
-      <div className="pageContainer">
-        <div className={currentPage}>
-          <Router>
-          
-            <div className="navContainer">
-              <NavBar className="navBar" clickedLink={this.handleNavBarClick} activePage={currentPage}>
-                <LogoButton navLinkClass="logoNavLink" childClass="logoButton"/>
-                <IssuesButton navLinkClass="issuesNavLink" childClass="issuesButton" />
-                <AboutUsButton navLinkClass="aboutusNavLink" childClass="aboutusButton" />
-                <ContactButton navLinkClass="contactNavLink" childClass="contactButton" />
-              </NavBar>
-            </div>
-          
-            <div className="mainContainer">
-              <Routes>
-                <Route path="/" element={<Home />}/>
-                <Route path="/issues" element={<Issues />}/>
-                <Route path="/aboutus" element={<AboutUs />}/>
-                <Route path="/contact" element={<Contact />}/>
-              </Routes>
-            </div>
+    if ( page === "" ) {
+      setCurrentPage("home");
+    } else {
+      setCurrentPage(page);
+    };
+  };
 
-          </Router>
-        </div>
+  return (
+    
+    <div className="pageContainer" onLoad={handleState}>
+      
+      <div className={currentPage}>
+        <Router>
+          
+          <div className="navContainer">
+            <NavBar className="navBar" clickedLink={handleState} currentPage={currentPage}>
+              <LogoButton navLinkClass="logoNavLink" childClass="logoButton"/>
+              <IssuesButton navLinkClass="issuesNavLink" childClass="issuesButton" />
+              <AboutUsButton navLinkClass="aboutusNavLink" childClass="aboutusButton" />
+              <ContactButton navLinkClass="contactNavLink" childClass="contactButton" />
+            </NavBar>
+          </div>
+          
+          <div className="mainContainer">
+            <Routes>
+              <Route path="/" element={<Home />}/>
+              <Route path="/issues" element={<Issues />}/>
+              <Route path="/aboutus" element={<AboutUs />}/>
+              <Route path="/contact" element={<Contact />}/>
+            </Routes>
+          </div>
+            
+
+        </Router>
+      </div>
+      
+      <div className="footer">
         <Footer audioDir="/songs/loop/" />
       </div>
-    );
 
-  }
+    </div>
+  );
 }
 
 export default App;

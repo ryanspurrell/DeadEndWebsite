@@ -61,7 +61,18 @@
   }
 
   .navBar .issues, .navBar .aboutus, .navBar .contact {
-    border: 3px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .rNavBar {
+    width: 100%;
+    height: 100%;
+  }
+
+  .rNavBar .issues, .rNavBar .aboutus, .rNavBar .contact {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,11 +83,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; 
   }
 
   .logoNavLink {
-    width: 100%;
   }
 
   .issuesButton {

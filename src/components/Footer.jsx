@@ -5,9 +5,12 @@
 
 import React, { useState, useEffect } from 'react';
 
+import "./Footer.css";
 
 export default function Footer(props) {
+  
   const audioDir = props.audioDir;
+  const className = props.className;
   const meta = props.audioDir + "metadata.json";
 
   let [audioJSON, setAudioJSON] = useState(null);
@@ -19,7 +22,7 @@ export default function Footer(props) {
   },[]);
  
   return (
-    <div className="footer">
+    <div className="footer1">
       <div className="songInfo">
       </div>
         

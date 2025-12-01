@@ -10,6 +10,31 @@
 
 /* vvv START Desktop width vvv */
 @media (min-width: 768px) {
+  
+  .footer1 {
+    display: grid;
+    grid-template-areas:
+      "empty1 songInfo player empty2 socials";
+    grid-template-columns: 4fr 4fr 10fr 4fr 4fr;
+    width: 100%;
+    gap: 20px;
+  
+    .songInfo {
+      grid-area: songInfo;
+      display: flex;
+      justify-content: center;
+    }
+    .audioPlayer {
+      grid-area: player;
+      display: flex;
+      justify-content: center;
+      width: 100%;
 
+      audio {
+        width: 100%;
+      }
+    }
+  }
+  
 }
 /* ^^^ END Desktop width ^^^ */

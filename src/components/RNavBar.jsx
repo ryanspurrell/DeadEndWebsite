@@ -1,10 +1,11 @@
-// NavBar.jsx
+// RNavBar.jsx
 
 import React from "react";
+import { loadIssues } from "../lib/loadIssues";
 
 import './NavBar.css';
 
-function NavBar(props) {
+function RNavBar(props) {
 
   const currentPage = props.currentPage;
   const clickedLink = props.clickedLink;
@@ -18,4 +19,4 @@ function NavBar(props) {
   );
 }
 
-export default NavBar;
+export default RNavBar;
