@@ -1,11 +1,25 @@
 {
   "title": "testissue",
-  "pages": [
+  "entries": [
     "pages/testp1.png",
     "pages/testp2.png"
   ],
-  "thumbnails": [
+  "images": [
     "thumbnails/testp1.jpg",
     "thumbnails/testp2.jpg"
-  ]
+  ],
+  "other": {
+    "authors": [
+      "Ryan",
+      "Author2"
+    ],
+    "artists": [
+      "Art Tist"
+    ],
+    "date-published": {
+      "day": 1,
+      "month": 12,
+      "year": 2025
+    }
+  }
 }

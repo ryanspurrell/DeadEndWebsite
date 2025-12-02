@@ -6,22 +6,23 @@
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  text-decoration: inherit;
-}
-a:hover {
+html, body {
+  height: 100vh;
 }
 
 body {
+  background: var(--bg);
+}
+
+#root {
+  height: 100%;
   margin: 0;
   display: flex;
-  min-width: 100%;
-  min-height: 100%;
 }
 
 h1 {

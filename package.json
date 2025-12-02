@@ -8,9 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "update-index": "node updateIndex.js",
-    "prebuild": "npm run update-Index",
-    "generate-issues": "node generateIssues.js"
+    "generate-entries": "node utils/generateEntries.js",
+    "prebuild": "npm run generate-entries"
   },
   "dependencies": {
     "react": "^19.2.0",

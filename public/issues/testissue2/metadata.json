@@ -1,13 +1,14 @@
 {
   "title": "testissue2",
-  "pages": [
+  "entries": [
     "pages/dove3.png",
     "pages/skeleton.avif",
     "pages/skeletonman.webp"
   ],
-  "thumbnails": [
+  "images": [
     "thumbnails/dove3.jpg",
     "thumbnails/skeleton.avif",
     "thumbnails/skeletonman.jpg"
-  ]
+  ],
+  "other": {}
 }

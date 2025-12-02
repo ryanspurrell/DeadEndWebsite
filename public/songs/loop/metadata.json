@@ -1,7 +1,13 @@
 {
-	"title": "loop",
-	"artist": "BigFingus",
-	"album": "None",
-	"filetype": ".flac",
-	"image": "bigfingus.png"
+  "title": "loop",
+  "entries": [
+    "tracks/loop.flac"
+  ],
+  "images": [
+    "artwork/bigfingus.png"
+  ],
+  "other": {
+    "artist": "bigfingus",
+    "album": "none"
+  }
 }

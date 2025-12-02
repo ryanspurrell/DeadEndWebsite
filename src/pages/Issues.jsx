@@ -2,69 +2,65 @@
 
 import { useState } from "react";
 
-import IssuesList from "../components/IssuesList";
-import './Issues.css';
+import EntriesList from "../components/EntriesList";
 import NavBar from "../components/NavBar";
+
+import './Issues.css';
 
 export default function Issues() {
 
-  const [selectedIssue, setSelectedIssue] = useState(null);
-  const [pageIndex, setPageIndex] = useState(0);
+  const [issue, setIssue] = useState(null);
+  const [index, setIndex] = useState(0);
 
-  if (!selectedIssue) {
-    return <IssuesList onSelect={(i) => {
-        setSelectedIssue(i);
-        setPageIndex(0)
+  const IssuesEntries = ({ className }) => 
+    <EntriesList entriesFolder="../../issues" className={className} buttonClass="issuesButton" onSelect={(i) => {
+      setIssue(i);
+      setIndex(0);
     }} />;
-  }
-
-  const pages = selectedIssue.pages;
-  const pageSrc = pages[pageIndex];
-
-  function nextPage() {
-    setPageIndex((i) => (i + 1) % pages.length);
-  }
-
-  function prevPage() {
-    setPageIndex((i) => (i - 1 + pages.length) % pages.length);
-  }
 
   document.title = "Issues";
 
-  const issueData = 
-        <div className="issueData">
-          <h2>{selectedIssue.metadata.title}</h2>
-          <button className="back" onClick={() => setSelectedIssue(null)}>
-            Back to Issues
-          </button>
-        </div>;
+  if (!issue) {
+    return <IssuesEntries className="notSelected" />;
+  }
 
+  const pages = issue.pages;
+  const pageSrc = pages[index];
+
+  function nextPage() {
+    setIndex((i) => (i + 1) % pages.length);
+  }
+
+  function prevPage() {
+    setIndex((i) => (i - 1 + pages.length) % pages.length);
+  }
+  
   return (
-      <div className="issueViewer">
-        
-        <div className="issueContainer">
-          <img className="issueDisplay" src={pageSrc} alt="Issue page" />
-        </div>
+    <div className="issuesDiv">
+      <div className="issuesPage">
+     
 
-        <div className="issuesFooter">
-          <div className="larrow">
-            <button className="left" onClick={prevPage}>&#10094;</button>
-          </div>;
-          <p className="pageNum">
-            Page {pageIndex + 1} / {pages.length}
-          </p>
-          <div className="rarrow">
-            <button className="rarrow" onClick={nextPage}>&#10095;</button>
+        <div className="issuesDispContainer">
+
+          <div className="issuesDispWrapper">
+            
+
+            <button className="dispButton left" onClick={prevPage}>&#10094;</button>
+            <img className="issuesDisp" src={pageSrc} />
+            <button className="dispButton right" onClick={nextPage}>&#10095;</button>
+            
+            <div className="issuesFooter">
+              <p className="pageNum">Page {index + 1} / {pages.length}</p>
+            </div>
+          
           </div>
         </div>
 
-        <NavBar className="issuesNav">
-          <IssuesList className="issuesList" onSelect = {(i) => {
-            setSelectedIssue(i);
-            setPageIndex(0);
-          }} />
-        </NavBar>
 
+        <NavBar className="issuesNav">
+          <IssuesEntries />
+        </NavBar>
       </div>
+    </div>
   );
 }

@@ -7,6 +7,8 @@ import React, { useState, useEffect } from 'react';
 
 import "./Footer.css";
 
+const songsDir = "/songs";
+
 export default function Footer(props) {
   
   const audioDir = props.audioDir;
@@ -20,7 +22,14 @@ export default function Footer(props) {
       .then(x => x.json())
       .then(y => setAudioJSON(y))
   },[]);
- 
+
+
+  var audioFiletype = "audio/flac";
+
+  if (audioJSON) {
+    audioFiletype = "audio/" + audioJSON.entries[0].split("/")[1].split(".")[1];
+  }
+
   return (
     <div className="footer1">
       <div className="songInfo">
@@ -28,9 +37,9 @@ export default function Footer(props) {
         
       <div className="audioPlayer">
         {audioJSON && <audio controls><source src=
-          {audioDir + audioJSON.title + audioJSON.filetype} 
+          {audioDir + audioJSON.entries[0]} 
         type=
-          {"audio/" + audioJSON.filetype.split(".")[1]}/></audio>}
+          {audioFiletype}/></audio>}
       </div>
     </div>
   );

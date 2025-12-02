@@ -1,24 +1,20 @@
 @import "./styles/colors.css";
 @import "./styles/animations.css";
-
+/*
 #root {
   display: flex;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0;
   text-align: center;
   justify-content: center;
   align-items: center;
   background: var(--bg);
 }
-
-.pageContainer {
-  display: grid;
-  width: 100%;
-}
+*/
 
 /* vvv START Mobile width vvv */
 .pageContainer {
@@ -36,14 +32,15 @@
 
   .pageContainer {
     display: grid;
+    
     grid-template-areas:
       "main"
       "footer";
-
     grid-template-rows: 23fr 1fr;
     grid-template-columns: 24fr;
+    
     width: calc(100% - 200px);
-    height: calc(100vh - 40px);
+    height: calc(100% - 40px);
 
     padding-left: 100px;
     padding-right: 100px;
@@ -56,6 +53,8 @@
   .pageContainer .home {
     grid-area: main;
     display: flex;
+    justify-content: center;
+    align-items: center;
     
     .mainContainer {
       display: none;
@@ -79,12 +78,18 @@
 
     width: 100%;
     height: 100%;
+    min-width: 0;
+    min-height: 0; 
 
     .mainContainer {
       grid-area: pageArea;
       display: flex;
-      height: 100%;
+      height: calc(100% - 20px);
+      padding: 10px;
       width: 100%;
+      min-height: 0;
+      border-top: 3px solid white;
+      border-bottom: 3px solid white;
     }
     .navContainer {
       grid-area: navBar;
@@ -93,6 +98,8 @@
       align-items: center;
       width: 100%;
       height: 100%;
+      border: 3px solid white;
+      border-radius: 10px;
     }
   }
 
