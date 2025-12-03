@@ -1,9 +1,9 @@
 // Issues.jsx
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import EntriesList from "../components/EntriesList";
-import NavBar from "../components/NavBar";
+import EntriesRoutes from "../routes/EntriesRoutes"
 
 import './Issues.css';
 
@@ -12,16 +12,30 @@ export default function Issues() {
   const [issue, setIssue] = useState(null);
   const [index, setIndex] = useState(0);
 
-  const IssuesEntries = ({ className }) => 
-    <EntriesList entriesFolder="../../issues" className={className} buttonClass="issuesButton" onSelect={(i) => {
-      setIssue(i);
-      setIndex(0);
-    }} />;
+  const handleSelect = useCallback((i) => {
+    setIssue(i);
+    setIndex(0);
+  },[]);
 
+  const IssuesEntries = ({ className, children }) => 
+    <EntriesList 
+      entriesFolder="/issues" 
+      className={className}
+      children={children}
+      buttonClass="issuesButton" 
+      onSelect={handleSelect} />;
+
+  const IssuesRoutes = () =>
+    <EntriesRoutes entriesFolder="/issues"/>;
+
+  const IssuesNotSelected = () =>
+    <IssuesEntries className="notSelected" />;
+
+  
   document.title = "Issues";
 
   if (!issue) {
-    return <IssuesEntries className="notSelected" />;
+    return <IssuesNotSelected />
   }
 
   const pages = issue.pages;
@@ -34,32 +48,26 @@ export default function Issues() {
   function prevPage() {
     setIndex((i) => (i - 1 + pages.length) % pages.length);
   }
-  
+
   return (
     <div className="issuesDiv">
-      <div className="issuesPage">
-     
+      <div className="issuesPage">     
 
         <div className="issuesDispContainer">
-
           <div className="issuesDispWrapper">
-            
-
             <button className="dispButton left" onClick={prevPage}>&#10094;</button>
             <img className="issuesDisp" src={pageSrc} />
             <button className="dispButton right" onClick={nextPage}>&#10095;</button>
-            
             <div className="issuesFooter">
               <p className="pageNum">Page {index + 1} / {pages.length}</p>
             </div>
-          
           </div>
         </div>
 
 
-        <NavBar className="issuesNav">
+        <div className="issuesNav">
           <IssuesEntries />
-        </NavBar>
+        </div>
       </div>
     </div>
   );

@@ -85,7 +85,12 @@
     align-items: center;
   }
 
-  .logoNavLink {
+  .logoNavLink.active button,
+  .issuesNavLink.active button,
+  .aboutusNavLink.active button,
+  .contactNavLink.active button {
+    font-weight: bold;
+    text-decoration: underline;
   }
 
   .issuesButton {

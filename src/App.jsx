@@ -2,8 +2,8 @@
 
 import './App.css';
 
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, NavLink, useLocation } from "react-router-dom";
 
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
@@ -14,64 +14,76 @@ import NavBar from './components/NavBar';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
 
+const getNavLinkClassName = (navLinkClass) => ({ isActive }) =>
+  isActive ? `${navLinkClass} active` : navLinkClass;
+
 // Define the buttons in the navigation bar
-// doing them here and not NavBar.jsx because of routing
 const LogoButton = ({navLinkClass, childClass}) => 
-  <Link to="/" className={navLinkClass}><Logo className={childClass} value="/" /></Link>;
+  <NavLink to="/" className={getNavLinkClassName(navLinkClass)} end>
+    <Logo className={childClass} value="/" />
+  </NavLink>;
+
 const IssuesButton = ({navLinkClass, childClass}) => 
-  <Link to="/issues" className={navLinkClass}><button className={childClass} value="/issues">Issues</button></Link>;
+  <NavLink to="/issues" className={getNavLinkClassName(navLinkClass)}>
+    <button className={childClass} value="/issues">Issues</button>
+  </NavLink>;
+
 const AboutUsButton = ({navLinkClass, childClass}) => 
-  <Link to="/aboutus" className={navLinkClass}><button className={childClass} value="/aboutus">About Us</button></Link>;
+  <NavLink to="/aboutus" className={getNavLinkClassName(navLinkClass)}>
+    <button className={childClass} value="/aboutus">About Us</button>
+  </NavLink>;
+
 const ContactButton = ({navLinkClass, childClass}) => 
-  <Link to="/contact" className={navLinkClass}><button className={childClass} value="/contact">Contact</button></Link>;
+  <NavLink to="/contact" className={getNavLinkClassName(navLinkClass)}>
+    <button className={childClass} value="/contact">Contact</button>
+  </NavLink>;
+
+function RouterContent() {
+  const location = useLocation();
+  
+  let currentPage = "";
+  const pathSegment = location.pathname.split('/')[1]; 
+  
+  if (pathSegment === "" || pathSegment === undefined) {
+    currentPage = "home";
+  } else if (["issues", "aboutus", "contact"].includes(pathSegment)) {
+    currentPage = pathSegment;
+  }
+  
+  return (
+    <div className={currentPage}> 
+      
+      <div className="navContainer">
+        <NavBar className="navBar"> 
+          <LogoButton navLinkClass="logoNavLink" childClass="logoButton"/>
+          <IssuesButton navLinkClass="issuesNavLink" childClass="issuesButton" />
+          <AboutUsButton navLinkClass="aboutusNavLink" childClass="aboutusButton" />
+          <ContactButton navLinkClass="contactNavLink" childClass="contactButton" />
+        </NavBar>
+      </div>
+      
+      <div className="mainContainer">
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/issues/*" element={<Issues />}/>
+          <Route path="/aboutus" element={<AboutUs />}/>
+          <Route path="/contact" element={<Contact />}/>
+        </Routes>
+      </div>
+        
+    </div>
+  );
+}
 
 function App() {
 
-  const [pageLink, setPageLink] = useState(null);
-  const [currentPage, setCurrentPage] = useState(null);
-
-  const handleState = function() {
-    const currentURL = window.location.href;
-    const pageList = currentURL.split("/");
-    const page = pageList[pageList.length - 1];
-
-    setPageLink(currentURL);
-    
-    if ( page === "" ) {
-      setCurrentPage("home");
-    } else {
-      setCurrentPage(page);
-    };
-  };
-
   return (
     
-    <div className="pageContainer" onLoad={handleState}>
-      
-      <div className={currentPage}>
-        <Router>
-          
-          <div className="navContainer">
-            <NavBar className="navBar" clickedLink={handleState} currentPage={currentPage}>
-              <LogoButton navLinkClass="logoNavLink" childClass="logoButton"/>
-              <IssuesButton navLinkClass="issuesNavLink" childClass="issuesButton" />
-              <AboutUsButton navLinkClass="aboutusNavLink" childClass="aboutusButton" />
-              <ContactButton navLinkClass="contactNavLink" childClass="contactButton" />
-            </NavBar>
-          </div>
-          
-          <div className="mainContainer">
-            <Routes>
-              <Route path="/" element={<Home />}/>
-              <Route path="/issues" element={<Issues />}/>
-              <Route path="/aboutus" element={<AboutUs />}/>
-              <Route path="/contact" element={<Contact />}/>
-            </Routes>
-          </div>
-            
-
-        </Router>
-      </div>
+    <div className="pageContainer">
+     
+      <Router future={{v7_start_transition: true,}}>
+        <RouterContent />
+      </Router>
       
       <div className="footer">
         <Footer audioDir="/songs/loop/" />

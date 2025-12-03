@@ -56,9 +56,31 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 10px;
     border-left: 3px solid white;
     border-right: 3px solid white;
+
+    .issuesButton {
+      width: 100%;
+      padding: 10px 15px;
+      margin: 0;
+      text-align: center;
+      background: none;
+      color: white; /* Match the main nav text color */
+      border: 2px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 1em;
+    }
+
+    .issuesButton:hover {
+      border-color: white;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
   }
+
 
   .issuesDispContainer {
     grid-area: disp;

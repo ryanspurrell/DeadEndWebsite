@@ -6,14 +6,12 @@ import './NavBar.css';
 
 function NavBar(props) {
 
-  const currentPage = props.currentPage;
-  const clickedLink = props.clickedLink;
   const className = props.className;
   const children = props.children;
 
   return (
-    <nav className={className} onClick={clickedLink}>
-      <div className={currentPage}>{children}</div>
+    <nav className={className}>
+      <div>{children}</div>
     </nav>
   );
 }
