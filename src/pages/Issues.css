@@ -41,103 +41,116 @@
   grid-template-columns: minmax(0, 10fr) minmax(0, 3fr);
 
   width: 100%;
-  height: calc(100% - 40px);
-  padding: 20px;
+  height: calc(100%);
   gap: 20px;
-
-  .issuesDispContainer,
-  .issuesNav {
-    min-width: 0;
-  }
-
-  .issuesNav {
-    grid-area: nav;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-left: 3px solid white;
-    border-right: 3px solid white;
-  }
-
-  .issuesDispContainer {
-    grid-area: disp;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    align-items: center;
-    min-height: 0;
-    overflow: hidden;
-
-    .issuesDispWrapper {
-
-      position: relative;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-left: 3px solid pink;
-      border-right: 3px solid pink;
-      padding: 10px;
-
-      .issuesDisp {
-        height: calc(100% - 20px);
-        width: auto;
-        object-fit: contain;
-        flex-shrink: 0;
-        display: block;
-        border: 3px solid white;
-        padding: 10px;
-      }
-
-      .dispButton {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-
-        background: rgba(0,0,0,0.2);
-        color: rgba(0,0,0,0.3);
-        border: none;
-        padding: 10px 14px;
-        cursor: pointer;
-        font-size: 24px;
-
-        border-radius: 6px;
-        user-select: none;
-      }
-
-      .dispButton.left {
-        left: 20px;
-      }
-
-      .dispButton.right {
-        right: 20px;
-      }
-
-      .dispButton:hover {
-        background: rgba(0,0,0,0.7);
-        color: black;
-      }
-
-      .issuesFooter {
-        position: absolute;
-        bottom: 0;
-        color: transparent;
-        font-size: 2rem;
-      }
-
-      .issuesFooter:hover {
-        color: white;
-        text-shadow: 0 0 10px black, 2px 2px 0 grey;
-        background: rgba(0,0,0,0.7);
-      }
-
-
-    }
-
-  }
-
+}
+.issuesPage .issuesDispContainer,
+.issuesPage .issuesNav {
+  min-width: 0;
 }
 
+.issuesPage .issuesNav {
+  grid-area: nav;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+}
+
+.issuesDispContainer {
+  grid-area: disp;
+    
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  align-items: center;
+  width: 100%;   
+  min-height: 0;
+  overflow: scroll;
+}
+.issuesDispWrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.issuesDisp {
+  height: calc(100%);
+  flex-shrink: 0;
+  display: block;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+.issuesFooter {
+  position: absolute;
+  bottom: 0;
+  color: transparent;
+  font-size: 2rem;
+}
+
+.issuesFooter:hover {
+  color: white;
+  text-shadow: 0 0 10px black, 2px 2px 0 grey;
+  background: rgba(0,0,0,0.7);
+}
+
+.dispButtonContainer {
+  position: absolute;
+  z-index: 10; 
+  border: 3px solid green;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.dispButton {
+  position: relative;
+  border-radius: 0;
+  background: none;
+  color: rgba(0,0,0,0.2);
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 24px;
+  height: 200%;
+  user-select: none;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10%;
+}
+      
+
+.dispButton.left {
+  float: left;
+  p {
+    position: relative;
+    float: left;
+  }
+}
+
+.dispButton:hover {
+  background: none;
+  color: rgba(0,0,0,0.5);
+  text-shadow: 0 0 2px white;
+}
+
+.dispButton.left:hover {
+  box-shadow: 10px 0 20px rgba(0,0,0,0.8) inset;
+}
+
+.dispButton.right {
+  float: right;
+  p {
+    position: relative;
+    float: right;
+  }
+}
+.dispButton.right:hover {
+  box-shadow: -10px 0 20px rgba(0,0,0,0.8) inset;
+}
+  
 }
 /* ^^^ END Desktop width ^^^ */

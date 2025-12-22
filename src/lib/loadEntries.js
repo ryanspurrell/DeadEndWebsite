@@ -1,23 +1,35 @@
+// loadEntries.js
+
 export async function loadEntries(entryFolder) {
-  // 1. Get list of issue folder names
+  
   const indexRes = await fetch(`${entryFolder}/index.json`);
   const issueFolders = await indexRes.json();
 
   const issues = [];
+  try {
+    const indexRes = await fetch(`${entryFolder}/index.json`);
 
-  for (const folder of issueFolders) {
-    // 2. Load metadata.json for the issue
-    const metaRes = await fetch(`${entryFolder}/${folder}/metadata.json`);
-    const metadata = await metaRes.json();
+    if (!indexRes.ok) {
+      console.error(`Couldn't get ${entryFolder}/index.json. Status: ${indexRes.status}`);
+      return [];
+    }
 
-    // 3. Convert page paths into fully-qualified public URLs
-    const pages = metadata.entries.map(p => `${entryFolder}/${folder}/${p}`);
+    for (const folder of issueFolders) {
+    
+      const metaRes = await fetch(`${entryFolder}/${folder}/metadata.json`);
+      const metadata = await metaRes.json();
 
-    issues.push({
-      id: folder,
-      metadata,
-      pages
-    });
+      const pages = metadata.entries.map(p => `${entryFolder}/${folder}/${p}`);
+
+      issues.push({
+        id: folder,
+        metadata,
+        pages
+      });
+    }
+  } catch (error) {
+    console.error("File loading error:", error);
+    return [];
   }
 
   return issues;

@@ -1,6 +1,6 @@
 // AboutUs.jsx
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import EntriesList from "../components/EntriesList";
 import NavBar from "../components/NavBar";
@@ -10,8 +10,16 @@ import "./AboutUs.css";
 
 export default function AboutUs() {
   
+  const [index, setIndex] = useState(0);
   const [member, setMember] = useState(null);
+  const [members, setMembers] = useState([]);
 
+  const handleSelect = useCallback((i) => {
+    setMember(i);
+    setIndex(0);
+  },[]);
+
+  // What is shown before member is selected
   const AboutUsEntries = ({ className }) => 
     <EntriesList entriesFolder="../../members" className={className} buttonClass="aboutusButton" onSelect={(i) => {
       setMember(i);
