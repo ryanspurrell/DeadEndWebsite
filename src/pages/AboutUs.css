@@ -41,7 +41,7 @@
     "footer nav";
 
   grid-template-columns: minmax(0, 10fr) minmax(0, 3fr);
-  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-rows: 0.5fr 6fr 0.5fr;
 
   width: 100%;
   height: calc(100% - 10px);
@@ -57,23 +57,58 @@
 
   .aboutusHeader {
     grid-area: header;
+    display: flex;
+    justify-content: center;
+    border: 3px solid white;
   }
 
   .aboutusNav {
     grid-area: nav;
     display: flex;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
-    border-left: 3px solid white;
-    border-right: 3px solid white;
+    border: 3px solid white;
   }
 
   .aboutusDispContainer {
     grid-area: disp;
+    overflow: scroll;
+    display: flex;
+  }
+
+  .aboutusDisp {
+    display: flex;
+    align-items: center;
+
+    .img {
+      float: left;
+      max-width: 50%;
+      max-height: 70%;
+      width: auto;
+      height: auto;
+      padding: 10px;
+      border: 3px solid white;
+      border-radius: 10px; 
+    }
+
+    .bio {
+      padding-left: 20px;
+    }
+
   }
 
   .aboutusFooter {
     grid-area: footer;
+  }
+
+  .member {
+    font-size: 40px;
+  }
+
+  .back {
+    position: absolute;
+    float: left;
   }
 
 }
