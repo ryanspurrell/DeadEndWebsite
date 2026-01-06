@@ -3,6 +3,8 @@
   "entries": [
     "bio/hannah.txt"
   ],
-  "images": [],
+  "images": [
+    "images/image1.jpg"
+  ],
   "other": {}
 }
